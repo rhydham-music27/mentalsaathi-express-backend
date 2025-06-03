@@ -34,6 +34,7 @@ export const waitingListController = async (request, response) => {
         await emailTransporter.sendMail(userMailOptions)
         response.status(200)
             .send({
+                success: true,
                 message: "email sent",
                 email: user.email
             })
