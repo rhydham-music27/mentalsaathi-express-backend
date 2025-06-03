@@ -35,7 +35,7 @@ export const waitingListController = async (request, response) => {
         response.status(200)
             .send({
                 success: true,
-                message: "email sent",
+                message: "congrats you joined our waiting list",
                 email: user.email
             })
 
