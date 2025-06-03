@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+.env
+*.log
+
+# Build output
+dist/
+build/
+.next/
+out/
+.expo/
+
+# Coverage reports
+coverage/
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# React Native (Native dependencies)
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/build/
