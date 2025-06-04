@@ -14,7 +14,7 @@ const CommunityPostSchema = new mongoose.Schema({
     time: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
     replies: {
         type: Number,
