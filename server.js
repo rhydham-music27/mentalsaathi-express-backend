@@ -5,9 +5,8 @@ import morgan from 'morgan';
 import connectDb from './config/db.js';
 import interactionRouter from './routes/interaction.route.js';
 import authRouter from './routes/auth.route.js';
-import userModel from './models/user.model.js';
 import jwt from 'jsonwebtoken';
-import { comparePassword } from './utils/auth.utils.js';
+import { formRateLimiter } from './middleware/interaction.middleware.js';
 dotenv.config()
 
 connectDb()
@@ -22,7 +21,7 @@ app.get('/', (request, response) => {
             message: "api working succesfully"
         })
 })
-app.use('/api/v1/interaction', interactionRouter)
+app.use('/api/v1/interaction', formRateLimiter, interactionRouter)
 app.use('/api/v1/auth', authRouter)
 
 const port = process.env.PORT
