@@ -7,6 +7,10 @@ import interactionRouter from './routes/interaction.route.js';
 import authRouter from './routes/auth.route.js';
 import jwt from 'jsonwebtoken';
 import { formRateLimiter } from './middleware/interaction.middleware.js';
+import communityPostModel from './models/community.post.model.js';
+import { Authenticator } from './middleware/auth.middleware.js';
+import userModel from './models/user.model.js';
+import postRouter from './routes/post.route.js';
 dotenv.config()
 
 connectDb()
@@ -23,6 +27,8 @@ app.get('/', (request, response) => {
 })
 app.use('/api/v1/interaction', formRateLimiter, interactionRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/post', postRouter)
+
 
 const port = process.env.PORT
 // console.log(port)
