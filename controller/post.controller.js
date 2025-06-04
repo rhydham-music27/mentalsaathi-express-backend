@@ -1,21 +1,32 @@
 import communityPostModel from '../models/community.post.model.js';
 import userModel from '../models/user.model.js';
+//  {
+//     id: 1,
+//     title: "Feeling overwhelmed with semester exams",
+//     author: "Anonymous Student",
+//     time: "2 hours ago",
+//     replies: 12,
+//     likes: 8,
+//     category: "Academic Stress",
+//     preview:
+//       "Anyone else feeling like they can't breathe thinking about upcoming exams?",
+//   }
 export const communityController = async (request, response) => {
-    const { title, post, description } = request.body
+    const { title, category, preview } = request.body
     const { name } = await userModel.findById(request.user._id)
     if (!title) return response.status(400)
         .send({
             message: "enter your post title",
             success: false
         })
-    if (!description) return response.status(400)
+    if (!preview) return response.status(400)
         .send({
-            message: "enter your post description",
+            message: "enter your post preview",
             success: false
         })
-    if (!post) return response.status(400)
+    if (!category) return response.status(400)
         .send({
-            message: "enter your post tags",
+            message: "enter your category tags",
             success: false
         })
     if (!name) return response.status(503).send({
@@ -23,10 +34,11 @@ export const communityController = async (request, response) => {
         success: false
     })
     try {
-        const postData = await new communityPostModel({ name, title, description, post }).save()
+        const postData = await new communityPostModel({ author: name, title, category, preview }).save()
         response.status(201).send({
             message: "post created succesfully",
-            success: true
+            success: true,
+            ...postData
         })
     } catch (error) {
         console.log(error)

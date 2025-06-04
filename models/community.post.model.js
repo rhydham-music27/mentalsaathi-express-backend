@@ -1,21 +1,40 @@
 import mongoose from 'mongoose';
 
 const CommunityPostSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
+
+
     title: {
         type: String,
         required: true
     },
-    description: {
+    author: {
         type: String,
         required: true
     },
-    post: {
-        type: [],
+    time: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+    replies: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    likes: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    category: {
+        type: String,
         required: true
     },
+    preview: {
+        type: String,
+        required: true
+    },
+
+
 })
 export default mongoose.model('posts', CommunityPostSchema)
