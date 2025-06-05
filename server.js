@@ -12,6 +12,8 @@ import { Authenticator } from './middleware/auth.middleware.js';
 import userModel from './models/user.model.js';
 import postRouter from './routes/post.route.js';
 import likeModel from './models/like.model.js';
+import mongoose from 'mongoose';
+import postCommentModel from './models/post.comment.model.js';
 dotenv.config()
 
 connectDb()
@@ -29,6 +31,7 @@ app.get('/', (request, response) => {
 app.use('/api/v1/interaction', formRateLimiter, interactionRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/post', postRouter)
+
 
 
 const port = process.env.PORT

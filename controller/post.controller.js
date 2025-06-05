@@ -1,5 +1,6 @@
 import communityPostModel from '../models/community.post.model.js';
 import likeModel from '../models/like.model.js';
+import postCommentModel from '../models/post.comment.model.js';
 import userModel from '../models/user.model.js';
 
 export const communityController = async (request, response) => {
@@ -56,7 +57,6 @@ export const getCommunityController = async (request, response) => {
     }
 
 }
-
 export const LikeByIdController = async (request, response) => {
     const postId = request.params.id
     // const { userMail } = request.body
@@ -125,4 +125,35 @@ export const getLikeController = async (request, response) => {
     }
 
 }
-// export default communityController
+export const commentController = async (request, response) => {
+    const postId = request.params.id
+    const userData = await userModel.findById(request.user._id)
+    const userName = userData.name
+    const { comment } = request.body
+    if (!postId) return response.status(500).send({
+        message: "cannot retrieve post id",
+        success: false
+    })
+    if (!userName) return response.status(400).send({
+        message: "cannot retrieve user name, you are not login",
+        success: false
+    })
+    if (!comment) return response.status(400).send({
+        message: "cannot retrieve comment",
+        success: false
+    })
+    try {
+        const commentData = await new postCommentModel({ postId, userName, comment }).save()
+        return response.status(201).send({
+            message: "comment created succesfully",
+            success: true,
+            ...commentData
+        })
+    } catch (error) {
+        console.log(error)
+        return response.status(503).send({
+            message: "database unreachable at the moment please try again later",
+            ...error
+        })
+    }
+}
