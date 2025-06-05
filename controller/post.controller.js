@@ -1,17 +1,7 @@
 import communityPostModel from '../models/community.post.model.js';
 import likeModel from '../models/like.model.js';
 import userModel from '../models/user.model.js';
-//  {
-//     id: 1,
-//     title: "Feeling overwhelmed with semester exams",
-//     author: "Anonymous Student",
-//     time: "2 hours ago",
-//     replies: 12,
-//     likes: 8,
-//     category: "Academic Stress",
-//     preview:
-//       "Anyone else feeling like they can't breathe thinking about upcoming exams?",
-//   }
+
 export const communityController = async (request, response) => {
     const { title, category, preview } = request.body
     const { name } = await userModel.findById(request.user._id)
@@ -118,5 +108,21 @@ export const LikeByIdController = async (request, response) => {
                 success: false
             })
     }
+}
+export const getLikeController = async (request, response) => {
+    try {
+        const likeData = await likeModel.find({})
+        return response.status(200).send({
+            message: "data fetched successfully",
+            success: true,
+            likeData
+        })
+    } catch (error) {
+        return response.status(503).send({
+            message: "database error occured",
+            success: false
+        })
+    }
+
 }
 // export default communityController
