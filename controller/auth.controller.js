@@ -72,6 +72,7 @@ export const loginController = async (request, response) => {
     const token = await jwt.sign({ _id: userData._id }, process.env.JWT, { expiresIn: "3h" })
     return response.status(200)
         .send({
+            email: email,
             message: "user login succesfull",
             success: true,
             token
