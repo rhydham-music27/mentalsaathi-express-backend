@@ -11,6 +11,7 @@ import communityPostModel from './models/community.post.model.js';
 import { Authenticator } from './middleware/auth.middleware.js';
 import userModel from './models/user.model.js';
 import postRouter from './routes/post.route.js';
+import likeModel from './models/like.model.js';
 dotenv.config()
 
 connectDb()
