@@ -1,11 +1,8 @@
 import journalModel from "../models/tools/journal.model.js"
 
 export const journalController = async (request, response) => {
-    const { journal, preview, content, mood } = request.body
-    if (!journal) return response.status(400).send({
-        message: "journal must be entered",
-        success: true
-    })
+    const { preview, content, mood } = request.body
+
     if (!preview) return response.status(400).send({
         message: "preview must be entered",
         success: true
@@ -19,7 +16,7 @@ export const journalController = async (request, response) => {
         success: true
     })
     try {
-        const journalData = await new journalModel({ journal, userId: request.user._id, preview, mood, content }).save()
+        const journalData = await new journalModel({ userId: request.user._id, preview, mood, content }).save()
         return response.status(201).send({
             message: "journal uploaded succesfully",
             success: true,
