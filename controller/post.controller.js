@@ -1,7 +1,7 @@
-import communityPostModel from '../models/community.post.model.js';
-import likeModel from '../models/like.model.js';
-import postCommentModel from '../models/post.comment.model.js';
-import userModel from '../models/user.model.js';
+import communityPostModel from '../models/post/community.post.model.js';
+import likeModel from '../models/post/like.model.js';
+import postCommentModel from '../models/post/post.comment.model.js';
+import userModel from '../models/auth/user.model.js';
 
 export const communityController = async (request, response) => {
     const { title, category, preview } = request.body

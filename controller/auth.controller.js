@@ -1,4 +1,4 @@
-import userModel from "../models/user.model.js"
+import userModel from "../models/auth/user.model.js"
 import { comparePassword, hashPassword } from "../utils/auth.utils.js"
 import jwt from 'jsonwebtoken';
 export const signupController = async (request, response) => {

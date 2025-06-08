@@ -1,6 +1,6 @@
-import contactusModel from "../models/contactus.model.js"
-import getintouchModel from "../models/getintouch.model.js"
-import waitinglistModel from "../models/waitinglist.model.js"
+import contactusModel from "../models/interactions/contactus.model.js"
+import getintouchModel from "../models/interactions/getintouch.model.js"
+import waitinglistModel from "../models/interactions/waitinglist.model.js"
 import emailTransporter from "../utils/email.utils.js"
 
 export const waitingListController = async (request, response) => {
