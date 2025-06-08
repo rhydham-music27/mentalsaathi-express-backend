@@ -9,9 +9,18 @@ const journalSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    journal: {
+    preview: {
         type: String,
         required: true
-    }
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    mood: {
+        type: String,
+        required: true
+    },
+    
 })
 export default mongoose.model('journal', journalSchema)
