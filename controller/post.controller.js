@@ -157,3 +157,11 @@ export const commentController = async (request, response) => {
         })
     }
 }
+export const getCommentController = async (request, response) => {
+    const commentData = await postCommentModel.find({})
+    return response.status(200).send({
+        message: "data get succesfully",
+        success: true,
+        commentData
+    })
+}
