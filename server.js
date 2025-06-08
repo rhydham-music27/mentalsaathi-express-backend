@@ -9,6 +9,10 @@ import { formRateLimiter } from './middleware/interaction.middleware.js';
 import postRouter from './routes/post.route.js';
 import toolsRouter from './routes/tools.route.js';
 import journalModel from './models/tools/journal.model.js';
+import userModel from './models/auth/user.model.js';
+import { Authenticator } from './middleware/auth.middleware.js';
+import redis from './config/redis.js';
+import adminRouter from './routes/admin.route.js';
 dotenv.config()
 
 connectDb()
@@ -27,6 +31,7 @@ app.use('/api/v1/interaction', formRateLimiter, interactionRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/post', postRouter)
 app.use('/api/v1/tools', toolsRouter)
+app.use('/api/v1/admin', adminRouter)
 
 
 
