@@ -8,7 +8,8 @@ export const PingController = async (request, response) => {
     const timestamp = Date.now()
     await redis.set(`active_user:${userId}`, timestamp, 'EX', 300)
     response.status(200).send({
-        message: 'user is online'
+        message: 'user is online',
+        userId
     })
 }
 export const getActiveController = async (req, res) => {
@@ -35,7 +36,7 @@ export const getNecessaryController = async (request, response) => {
             active: keys.length
         })
 }
-export const adminAuthLoginController =  async (request, response) => {
+export const adminAuthLoginController = async (request, response) => {
     const { email, password } = request.body
     if (!email) return response.status(400)
         .send({
@@ -51,7 +52,7 @@ export const adminAuthLoginController =  async (request, response) => {
             message: "incorrect username and password",
             success: false
         })
-    const token = await jwt.sign({ _id: AdminExists._id },process.env.JWT)
+    const token = await jwt.sign({ _id: AdminExists._id }, process.env.JWT)
     return response.status(200)
         .send({
             message: "admin authenticated successfully",
