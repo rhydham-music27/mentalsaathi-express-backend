@@ -9,8 +9,7 @@ import { formRateLimiter } from './middleware/interaction.middleware.js';
 import postRouter from './routes/post.route.js';
 import toolsRouter from './routes/tools.route.js';
 import adminRouter from './routes/admin.route.js';
-import adminAuthModel from './models/auth/admin.auth.model.js';
-import jwt from 'jsonwebtoken';
+import therapistModels from './models/admin/therapist.models.js';
 dotenv.config()
 
 connectDb()

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import redis from "../config/redis.js"
 import adminAuthModel from "../models/auth/admin.auth.model.js"
 import userModel from "../models/auth/user.model.js"
+import therapistModels from '../models/admin/therapist.models.js';
 
 export const PingController = async (request, response) => {
     const userId = request.user.id
@@ -60,4 +61,66 @@ export const adminAuthLoginController = async (request, response) => {
             token
 
         })
+}
+export const addTherapistController = async (request, response) => {
+    try {
+        const { name, email, phone_number, experience, gender, expertise, bio } = request.body
+        if (!name) return response.status(400)
+            .send({
+                message: "name is required",
+                success: false
+            })
+        if (!email) return response.status(400)
+            .send({
+                message: "email is required",
+                success: false
+            })
+        if (!phone_number) return response.status(400)
+            .send({
+                message: "phone_number is required",
+                success: false
+            })
+        if (!experience) return response.status(400)
+            .send({
+                message: "experience is required",
+                success: false
+            })
+        if (!gender) return response.status(400)
+            .send({
+                message: "gender is required",
+                success: false
+            })
+        if (!expertise) return response.status(400)
+            .send({
+                message: "expertise is required",
+                success: false
+            })
+        if (!bio) return response.status(400)
+            .send({
+                message: "bio is required",
+                success: false
+            })
+        try {
+            const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
+            return response.status(201)
+                .send({
+                    message: "therapist added to database succesfully",
+                    success: true,
+                    ...therapistData
+                })
+        } catch (error) {
+            return response.status(503)
+                .send({
+                    message: "database error",
+                    success: false
+                })
+        }
+    } catch (error) {
+        return response.status(304).send(
+            {
+                message: error
+            }
+        )
+    }
+
 }
