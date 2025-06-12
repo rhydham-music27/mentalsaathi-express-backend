@@ -101,6 +101,12 @@ export const addTherapistController = async (request, response) => {
                 message: "bio is required",
                 success: false
             })
+
+        const exist = await therapistModels.findOne({ email })
+        if (exist) return response.status(409).send({
+            message: "therapist is present there",
+            success: false
+        })
         try {
             const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
             await availableTherapistModel({ email }).save()
