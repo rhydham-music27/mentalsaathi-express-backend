@@ -9,7 +9,11 @@ import { formRateLimiter } from './middleware/interaction.middleware.js';
 import postRouter from './routes/post.route.js';
 import toolsRouter from './routes/tools.route.js';
 import adminRouter from './routes/admin.route.js';
+import therapyRouter from './routes/therapist.route.js';
+import { Authenticator } from './middleware/auth.middleware.js';
 import therapistModels from './models/admin/therapist.models.js';
+import availableTherapistModel from './models/therapist/available.therapist.model.js';
+// import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
 connectDb()
@@ -18,7 +22,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
-app.get('/', (request, response) => {
+app.get('/', (_request, response) => {
     response.status(200)
         .send({
             message: "api working succesfully"
@@ -29,6 +33,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/post', postRouter)
 app.use('/api/v1/tools', toolsRouter)
 app.use('/api/v1/admin', adminRouter)
+app.use('/api/v1/therapist', therapyRouter)
 
 
 

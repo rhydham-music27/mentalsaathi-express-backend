@@ -41,7 +41,7 @@ export const communityController = async (request, response) => {
     }
 
 }
-export const getCommunityController = async (request, response) => {
+export const getCommunityController = async (_request, response) => {
     try {
         const communityPostData = await communityPostModel.find({})
         return response.status(200).send({
@@ -109,7 +109,7 @@ export const LikeByIdController = async (request, response) => {
             })
     }
 }
-export const getLikeController = async (request, response) => {
+export const getLikeController = async (_request, response) => {
     try {
         const likeData = await likeModel.find({})
         return response.status(200).send({
@@ -157,7 +157,7 @@ export const commentController = async (request, response) => {
         })
     }
 }
-export const getCommentController = async (request, response) => {
+export const getCommentController = async (_request, response) => {
     const commentData = await postCommentModel.find({})
     return response.status(200).send({
         message: "data get succesfully",

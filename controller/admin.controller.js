@@ -3,6 +3,7 @@ import redis from "../config/redis.js"
 import adminAuthModel from "../models/auth/admin.auth.model.js"
 import userModel from "../models/auth/user.model.js"
 import therapistModels from '../models/admin/therapist.models.js';
+import availableTherapistModel from '../models/therapist/available.therapist.model.js';
 
 export const PingController = async (request, response) => {
     const userId = request.user.id
@@ -13,11 +14,11 @@ export const PingController = async (request, response) => {
         userId
     })
 }
-export const getActiveController = async (req, res) => {
+export const getActiveController = async (_req, res) => {
     const keys = await redis.keys('active_user:*');
     res.json({ activeUsers: keys.length });
 }
-export const getUserController = async (request, response) => {
+export const getUserController = async (_request, response) => {
     const totalUser = (await userModel.find({})).length
     response.status(200)
         .send({
@@ -26,7 +27,7 @@ export const getUserController = async (request, response) => {
             totalUser
         })
 }
-export const getNecessaryController = async (request, response) => {
+export const getNecessaryController = async (_request, response) => {
     const totalUser = (await userModel.find({})).length
     const keys = await redis.keys('active_user:*');
     response.status(200)
@@ -102,6 +103,7 @@ export const addTherapistController = async (request, response) => {
             })
         try {
             const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
+            await availableTherapistModel({ email }).save()
             return response.status(201)
                 .send({
                     message: "therapist added to database succesfully",
