@@ -109,7 +109,7 @@ export const addTherapistController = async (request, response) => {
         })
         try {
             const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
-            await availableTherapistModel({ email }).save()
+            await availableTherapistModel({ _id: therapistData._id }).save()
             return response.status(201)
                 .send({
                     message: "therapist added to database succesfully",

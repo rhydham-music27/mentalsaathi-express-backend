@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import moongoose from 'mongoose';
 const availableSchema = new moongoose.Schema({
-    email: {
-        type: String,
+    employeeId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     status: {
