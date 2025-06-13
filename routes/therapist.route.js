@@ -5,4 +5,5 @@ const therapyRouter = express.Router()
 therapyRouter.post('/login', therapistLoginController)
 therapyRouter.post('/toggle', Authenticator, therapistToggleController)
 therapyRouter.get('/available',Authenticator,getAvailableController)
+therapyRouter.get('/available-status',Authenticator,getAvailableController)
 export default therapyRouter

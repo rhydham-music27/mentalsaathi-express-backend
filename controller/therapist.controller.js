@@ -52,7 +52,7 @@ export const therapistToggleController = async (request, response) => {
             }, { new: true })
         }
         if (availabletherapist.status === false) {
-           await  availableTherapistModel.findOneAndUpdate({ email }, {
+            await availableTherapistModel.findOneAndUpdate({ email }, {
                 $set: { status: 1 }
             }, { new: true })
         }
@@ -69,11 +69,19 @@ export const therapistToggleController = async (request, response) => {
     }
 
 }
-export const getAvailableController =  async (_request,response ) => { 
-    const data = await availableTherapistModel.find({status:true})
+export const getAvailableController = async (_request, response) => {
+    const data = await therapistModels.find({})
     return response.status(200).send({
-        message:"get succesfull",
-        success:true , 
+        message: "get succesfull",
+        success: true,
         data
     })
- }
+}
+export const getAvailablityStatusController = async (_request, response) => {
+    const data = await availableTherapistModel.find({ status: true })
+    return response.status(200).send({
+        message: "get succesfull",
+        success: true,
+        data
+    })
+}
