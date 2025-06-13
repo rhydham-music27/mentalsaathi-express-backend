@@ -13,6 +13,8 @@ import therapyRouter from './routes/therapist.route.js';
 import { Authenticator } from './middleware/auth.middleware.js';
 import therapistModels from './models/admin/therapist.models.js';
 import availableTherapistModel from './models/therapist/available.therapist.model.js';
+import emailTransporter from './utils/email.utils.js';
+import emailRouter from './routes/email.route.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -34,6 +36,7 @@ app.use('/api/v1/post', postRouter)
 app.use('/api/v1/tools', toolsRouter)
 app.use('/api/v1/admin', adminRouter)
 app.use('/api/v1/therapist', therapyRouter)
+app.use('/api/v1/email', emailRouter)
 
 
 
