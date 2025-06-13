@@ -3,6 +3,7 @@ import moongoose from 'mongoose';
 const availableSchema = new moongoose.Schema({
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "therapists",
         required: true
     },
     status: {

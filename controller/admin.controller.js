@@ -109,7 +109,8 @@ export const addTherapistController = async (request, response) => {
         })
         try {
             const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
-            await availableTherapistModel({ _id: therapistData._id }).save()
+
+            await availableTherapistModel({ employeeId: therapistData._id }).save()
             return response.status(201)
                 .send({
                     message: "therapist added to database succesfully",
@@ -119,8 +120,9 @@ export const addTherapistController = async (request, response) => {
         } catch (error) {
             return response.status(503)
                 .send({
-                    message: "database error",
+                    message: error.message,
                     success: false
+
                 })
         }
     } catch (error) {

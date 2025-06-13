@@ -77,8 +77,9 @@ export const getAvailableController = async (_request, response) => {
         data
     })
 }
-export const getAvailablityStatusController = async (_request, response) => {
-    const data = await availableTherapistModel.find({ status: true })
+export const getAvailablityStatusController = async (request, response) => {
+    const employeeId = request.params.id
+    const data = await availableTherapistModel.findOne({ employeeId })
     return response.status(200).send({
         message: "get succesfull",
         success: true,
