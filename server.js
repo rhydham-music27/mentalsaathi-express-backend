@@ -10,10 +10,6 @@ import postRouter from './routes/post.route.js';
 import toolsRouter from './routes/tools.route.js';
 import adminRouter from './routes/admin.route.js';
 import therapyRouter from './routes/therapist.route.js';
-import { Authenticator } from './middleware/auth.middleware.js';
-import therapistModels from './models/admin/therapist.models.js';
-import availableTherapistModel from './models/therapist/available.therapist.model.js';
-import emailTransporter from './utils/email.utils.js';
 import emailRouter from './routes/email.route.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
@@ -21,7 +17,9 @@ dotenv.config()
 connectDb()
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin:'https://mentalsaathi.in'
+}))
 app.use(express.json())
 app.use(morgan('dev'))
 app.get('/', (_request, response) => {
