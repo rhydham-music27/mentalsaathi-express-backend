@@ -18,7 +18,7 @@ connectDb()
 
 const app = express()
 app.use(cors({
-    origin:'https://mentalsaathi.in'
+    origin:process.env.CORS_ORIGIN
 }))
 app.use(express.json())
 app.use(morgan('dev'))
