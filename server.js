@@ -12,6 +12,7 @@ import adminRouter from './routes/admin.route.js';
 import therapyRouter from './routes/therapist.route.js';
 import emailRouter from './routes/email.route.js';
 import profileStorage from './storage/profile.storage.js';
+import mediaRouter from './routes/media.routes.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -36,6 +37,7 @@ app.use('/api/v1/tools', toolsRouter)
 app.use('/api/v1/admin', adminRouter)
 app.use('/api/v1/therapist', therapyRouter)
 app.use('/api/v1/email', emailRouter)
+app.use('/api/v1/media', mediaRouter)
 
 
 
