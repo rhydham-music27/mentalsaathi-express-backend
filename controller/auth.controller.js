@@ -2,7 +2,7 @@ import userModel from "../models/auth/user.model.js"
 import { comparePassword, hashPassword } from "../utils/auth.utils.js"
 import jwt from 'jsonwebtoken';
 export const signupController = async (request, response) => {
-    const { email, name, password, confirmPassword } = request.body
+    const { email, name, password, confirmPassword,profile_picture } = request.body
     if (!email) return response.status(400)
         .send({
             message: "enter the email",
@@ -21,6 +21,11 @@ export const signupController = async (request, response) => {
     if (!confirmPassword) return response.status(400)
         .send({
             message: "enter the confirmation password",
+            success: false
+        })
+    if (!profile_picture) return response.status(400)
+        .send({
+            message: "upload the profile picture",
             success: false
         })
     if (password !== confirmPassword) return response.status(400)

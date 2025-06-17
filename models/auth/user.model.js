@@ -16,6 +16,11 @@ const userModel = new mongoose.Schema({
         required: true,
         unique: false
     },
+    profile_picture: {
+        type: String,
+        required: true,
+        unique: false
+    },
 
 })
 export default mongoose.model('users', userModel)
