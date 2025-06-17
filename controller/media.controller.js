@@ -1,6 +1,13 @@
 export const profileUploadController = (request, response) => {
-    return response.status(201)
-        .send({
-            file: request.file
-        })
+    try {
+        return response.status(201)
+            .send({
+                file: request.file
+            })
+    } catch (error) {
+        return response.status(201)
+            .send({
+                error
+            })
+    }
 }
