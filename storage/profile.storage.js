@@ -1,10 +1,9 @@
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-// import cloudinary from "../config/cloudinary.config.js";
 import multer from "multer";
-import uploader from "../config/cloudinary.config.js";
+import cloudinary from "../config/cloudinary.config.js";
 
 const ProfileStorage = new CloudinaryStorage({
-    cloudinary: uploader,
+    cloudinary: cloudinary,
     params: {
         folder: 'profile-pictures',
         resource_type: 'image',
