@@ -1,22 +1,24 @@
 export const profileUploadController = (req, res) => {
   try {
+    console.log("REQ.FILE:", req.file);
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
+    const { path, filename } = req.file;
     return res.status(201).json({
-      message: "Profile picture uploaded successfully",
+      message: "Uploaded!",
       file: {
-        url: req.file.path,          // Cloudinary-hosted image URL
-        public_id: req.file.filename // Cloudinary public ID
+        url: path,
+        public_id: filename
       }
     });
 
   } catch (error) {
-    console.error("Upload Error:", error);
+    console.error("Upload Error:", error.stack || error);
     return res.status(500).json({
-      message: "Internal server error during file upload",
-      error: error.message || error
+      message: "Upload failed on server",
+      error: error.message
     });
   }
 };
