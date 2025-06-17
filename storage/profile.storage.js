@@ -6,8 +6,7 @@ const ProfileStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'profile-pictures',
-        resource_type: 'image',
-        format: ['jpg', 'jpeg', 'png'],
+        resource_type: 'image'
     }
 })
 export default multer({ storage: ProfileStorage })

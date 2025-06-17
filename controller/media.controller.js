@@ -1,16 +1,18 @@
 export const profileUploadController = (req, res) => {
   try {
-    console.log("REQ.FILE:", req.file);
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const { path, filename } = req.file;
+    const uploaded = req.file;
+
     return res.status(201).json({
       message: "Uploaded!",
       file: {
-        url: path,
-        public_id: filename
+        url: uploaded.path, // Cloudinary-hosted URL
+        originalName: uploaded.originalname,
+        mime: uploaded.mimetype,
+        size: uploaded.size
       }
     });
 
