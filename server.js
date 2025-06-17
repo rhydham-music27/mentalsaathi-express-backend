@@ -11,6 +11,7 @@ import toolsRouter from './routes/tools.route.js';
 import adminRouter from './routes/admin.route.js';
 import therapyRouter from './routes/therapist.route.js';
 import emailRouter from './routes/email.route.js';
+import profileStorage from './storage/profile.storage.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -18,7 +19,7 @@ connectDb()
 
 const app = express()
 app.use(cors({
-    origin:['localhost:3000','https://mentalsaathi.in']
+    origin: ['localhost:3000', 'https://mentalsaathi.in']
 }))
 app.use(express.json())
 app.use(morgan('dev'))
