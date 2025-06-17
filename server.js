@@ -20,7 +20,8 @@ connectDb()
 
 const app = express()
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://mentalsaathi.in']
+    origin: ['http://localhost:3000', 'https://mentalsaathi.in'],
+    allowedHeaders: ["Content-Type"],
 }))
 app.use(express.json())
 app.use(morgan('dev'))
