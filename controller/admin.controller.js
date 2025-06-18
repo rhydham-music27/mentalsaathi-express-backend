@@ -6,12 +6,10 @@ import therapistModels from '../models/admin/therapist.models.js';
 import availableTherapistModel from '../models/therapist/available.therapist.model.js';
 
 export const PingController = async (request, response) => {
-    const userId = request.user.id
-    const timestamp = Date.now()
-    await redis.set(`active_user:${userId}`, timestamp, 'EX', 300)
+
     response.status(200).send({
-        message: 'user is online',
-        userId
+        message: 'api is working',
+
     })
 }
 export const getActiveController = async (_req, res) => {
