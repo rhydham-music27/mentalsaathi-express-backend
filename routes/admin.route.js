@@ -5,7 +5,7 @@ import { addTherapistController, adminAuthLoginController, getActiveController, 
 const adminRouter = express.Router()
 
 
-adminRouter.get('/ping', Authenticator, PingController)
+adminRouter.get('/ping', PingController)
 adminRouter.get('/active-count', Authenticator, getActiveController);
 adminRouter.get('/totalUser', Authenticator, getUserController)
 adminRouter.get('/get-important', Authenticator, getNecessaryController)
