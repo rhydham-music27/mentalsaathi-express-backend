@@ -134,7 +134,7 @@ export const commentController = async (request, response) => {
         message: "cannot retrieve post id",
         success: false
     })
-    if (!userName) return response.status(400).send({
+    if (!name||!profile_picture) return response.status(400).send({
         message: "cannot retrieve user name, you are not login",
         success: false
     })
