@@ -63,7 +63,7 @@ export const adminAuthLoginController = async (request, response) => {
 }
 export const addTherapistController = async (request, response) => {
     try {
-        const { name, email, phone_number, experience, gender, expertise, bio } = request.body
+        const { name, email, phone_number, experience, gender, expertise, bio , profile_picture } = request.body
         if (!name) return response.status(400)
             .send({
                 message: "name is required",
@@ -99,6 +99,11 @@ export const addTherapistController = async (request, response) => {
                 message: "bio is required",
                 success: false
             })
+        if (!profile_picture) return response.status(400)
+            .send({
+                message: "profile_picture is required",
+                success: false
+            })
 
         const exist = await therapistModels.findOne({ email })
         if (exist) return response.status(409).send({
@@ -106,7 +111,7 @@ export const addTherapistController = async (request, response) => {
             success: false
         })
         try {
-            const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio }).save()
+            const therapistData = await therapistModels({ name, email, phone_number, experience, gender, expertise, bio , profile_picture }).save()
 
             await availableTherapistModel({ employeeId: therapistData._id }).save()
             return response.status(201)
