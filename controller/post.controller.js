@@ -127,8 +127,8 @@ export const getLikeController = async (_request, response) => {
 }
 export const commentController = async (request, response) => {
     const postId = request.params.id
-    const userData = await userModel.findById(request.user._id)
-    const userName = userData.name
+    const { name, profile_picture } = await userModel.findById(request.user._id)
+
     const { comment } = request.body
     if (!postId) return response.status(500).send({
         message: "cannot retrieve post id",
@@ -143,7 +143,7 @@ export const commentController = async (request, response) => {
         success: false
     })
     try {
-        const commentData = await new postCommentModel({ postId, userName, comment }).save()
+        const commentData = await new postCommentModel({ postId, userName: name, comment,profile_picture }).save()
         return response.status(201).send({
             message: "comment created succesfully",
             success: true,

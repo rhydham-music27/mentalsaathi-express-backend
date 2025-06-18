@@ -12,6 +12,11 @@ const PostCommentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profile_picture: {
+        type: String,
+        required: true
+    },
+
 })
 
 export default mongoose.model('comments', PostCommentSchema)
