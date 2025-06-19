@@ -88,13 +88,13 @@ export const authenticaterController = async (request, response) => {
     const user = request.user
     const userData = await userModel.findById(user._id)
     // console.log(userData)
-    const { email, name, profile_picture } = userData
+    const { _id, email, name, profile_picture } = userData
     // console.log(user)
     return response.status(200).send({
 
         success: true,
         message: true,
-        email, name, profile_picture
+        email, name, profile_picture, _id
 
     })
 }
