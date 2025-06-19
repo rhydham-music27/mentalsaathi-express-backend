@@ -86,3 +86,17 @@ export const getAvailablityStatusController = async (request, response) => {
         data
     })
 }
+export const getContainer = async (request, response) => {
+    const id = request.params.id
+    try {
+        const { _id, email, name, profile_picture } = await therapistModels.findById(id)
+        return response.status(200).send({
+            _id, email, name, profile_picture, success: true
+        })
+    } catch (error) {
+        return response.status(500).send({
+            success: false, message: "data not found"
+        })
+    }
+
+}

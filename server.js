@@ -13,6 +13,7 @@ import therapyRouter from './routes/therapist.route.js';
 import emailRouter from './routes/email.route.js';
 import profileStorage from './storage/profile.storage.js';
 import mediaRouter from './routes/media.routes.js';
+import therapistModels from './models/admin/therapist.models.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -20,8 +21,8 @@ connectDb()
 
 const app = express()
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://www.mentalsaathi.in','https://mentalsaathi.in'],
-     allowedHeaders: ["Content-Type", "Authorization"],
+    origin: ['http://localhost:3000', 'https://www.mentalsaathi.in', 'https://mentalsaathi.in'],
+    allowedHeaders: ["Content-Type", "Authorization"],
 }))
 app.use(express.json())
 app.use(morgan('dev'))
