@@ -11,6 +11,6 @@ export const therapistTokenController = (request, response) => {
     const { userId } = request.body;
     if (!userId) return response.status(400).json({ error: 'User ID required' });
 
-    const token = serverClient.createToken(userId, { role: "admin" });
+    const token = serverClient.createToken(userId, { role: "admin", exp: Math.floor(Date.now() / 1000) + 3600, });
     response.json({ token });
 }
