@@ -17,6 +17,8 @@ import therapistModels from './models/admin/therapist.models.js';
 import serverClient from './config/ServerClient.js';
 import streamRouter from './routes/stream.route.js';
 import { Authenticator } from './middleware/auth.middleware.js';
+import userModel from './models/auth/user.model.js';
+import userRouter from './routes/user.routes.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -44,6 +46,7 @@ app.use('/api/v1/therapist', therapyRouter)
 app.use('/api/v1/email', emailRouter)
 app.use('/api/v1/media', mediaRouter)
 app.use('/api/v1/stream', streamRouter)
+app.use('/api/v1/user', userRouter)
 
 
 
