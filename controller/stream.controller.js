@@ -1,7 +1,7 @@
 import serverClient from "../config/ServerClient.js";
 
 export const tokenController = async (request, response) => {
-    const { userId } = request.body;
+    const { userId,otherUserId } = request.body;
     if (!userId) return response.status(400).json({ error: 'User ID required' });
     await serverClient.upsertUsers([
         {
