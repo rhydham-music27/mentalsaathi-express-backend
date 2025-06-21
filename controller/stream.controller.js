@@ -8,23 +8,28 @@ export const tokenController = (request, response) => {
     response.json({ token });
 }
 export const therapistTokenController = async (req, res) => {
-  const { userId } = req.body;
-  if (!userId) return res.status(400).json({ error: 'User ID required' });
+    const { userId } = req.body;
+    if (!userId) return res.status(400).json({ error: 'User ID required' });
 
-  try {
-    // 1. Set therapist role to admin
-    await serverClient.partialUpdateUser({
-      id: userId,
-      set: { role: "admin" },
-    });
+    try {
+        await serverClient.upsertUser({
+            id: userId, // or therapist ID
+            name: "Therapist", // or actual name
+        });
 
-    // 2. Generate token (no options!)
-    const token = serverClient.createToken(userId);
+        // 1. Set therapist role to admin
+        await serverClient.partialUpdateUser({
+            id: userId,
+            set: { role: "admin" },
+        });
 
-    // 3. Send it
-    res.json({ token });
-  } catch (err) {
-    console.error("❌ therapistTokenController error:", err.message);
-    res.status(500).json({ error: "Token generation failed", details: err.message });
-  }
+        // 2. Generate token (no options!)
+        const token = serverClient.createToken(userId);
+
+        // 3. Send it
+        res.json({ token });
+    } catch (err) {
+        console.error("❌ therapistTokenController error:", err.message);
+        res.status(500).json({ error: "Token generation failed", details: err.message });
+    }
 };
