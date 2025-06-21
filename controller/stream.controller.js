@@ -6,7 +6,7 @@ export const tokenController = async (request, response) => {
     await serverClient.upsertUser({
         id: userId,
         name: userId,
-        image: image || `https://getstream.io/random_png/?id=${userId}`,
+        image: `https://getstream.io/random_png/?id=${userId}`,
     });
     const token = serverClient.createToken(userId);
     response.json({ token });
