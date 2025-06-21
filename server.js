@@ -16,6 +16,7 @@ import mediaRouter from './routes/media.routes.js';
 import therapistModels from './models/admin/therapist.models.js';
 import serverClient from './config/ServerClient.js';
 import streamRouter from './routes/stream.route.js';
+import { Authenticator } from './middleware/auth.middleware.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 

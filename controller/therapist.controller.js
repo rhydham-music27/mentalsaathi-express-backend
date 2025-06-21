@@ -22,7 +22,7 @@ export const therapistLoginController = async (request, response) => {
         message: "invalid email or password",
         success: false
     })
-    const token = jwt.sign({ _id: Exists._id }, process.env.JWT)
+    const token = jwt.sign({ _id: Exists._id }, process.env.JWT, { expiresIn: '2h' })
     return response.status(200).send({
         message: "therapist login succesfully",
         token,
@@ -98,5 +98,11 @@ export const getContainer = async (request, response) => {
             success: false, message: "data not found"
         })
     }
-
+}
+export const verifyController = async (request, response) => {
+    const id = request.user._id
+    return response.status(200).send({
+        _id: id,
+        success: true
+    })
 }
