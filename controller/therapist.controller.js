@@ -101,8 +101,10 @@ export const getContainer = async (request, response) => {
 }
 export const verifyController = async (request, response) => {
     const id = request.user._id
+    const data = await therapistModels.findById({ _id: id })
     return response.status(200).send({
         _id: id,
-        success: true
+        success: true,
+        data
     })
 }
