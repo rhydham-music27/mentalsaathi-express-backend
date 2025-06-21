@@ -1,9 +1,13 @@
 import serverClient from "../config/ServerClient.js";
 
-export const tokenController = (request, response) => {
+export const tokenController = async (request, response) => {
     const { userId } = request.body;
     if (!userId) return response.status(400).json({ error: 'User ID required' });
-
+    await serverClient.upsertUser({
+        id: userId,
+        name: userId,
+        image: image || `https://getstream.io/random_png/?id=${userId}`,
+    });
     const token = serverClient.createToken(userId);
     response.json({ token });
 }
