@@ -8,28 +8,30 @@ export const tokenController = (request, response) => {
     response.json({ token });
 }
 export const initController = async (req, res) => {
-    const { therapistId, userId } = req.body;
+  const { therapistId, userId } = req.body;
 
-    const sortedId = [userId, therapistId].sort().join("__");
+  const sortedId = [userId, therapistId].sort().join("__");
 
-    const channel = serverClient.channel("messaging", sortedId, {
-        name: "Therapist Chat",
-        members: [therapistId, userId],
-    });
+  const channel = serverClient.channel("messaging", sortedId, {
+    name: "Therapist Chat",
+    members: [therapistId, userId],
+  });
 
-    try {
-        await channel.create(); // Will fail if already created — catch it below
-    } catch (err) {
-        if (!err.message.includes("already exists")) {
-            return res.status(500).json({ message: "Channel creation failed", error: err.message });
-        }
-    }
+  try {
+    await channel.create();
+  } catch (err) {
+    if (!err.message.includes("already exists")) {
+      return res.status(500).json({ message: "Channel creation failed", error: err.message });
+    }
+  }
 
-    // Generate a token for the therapist
-    const therapistToken = serverClient.createToken(therapistId, { role: "admin" }); // safer than "user"
+  // ✅ Generate token for the USER (not therapist)
+  const userToken = serverClient.createToken(userId);
 
-    res.json({
-        channelId: sortedId,
-        token: therapistToken,
-    });
+  res.json({
+    channelId: sortedId,
+    token: userToken,
+  });
+};
+
 };
