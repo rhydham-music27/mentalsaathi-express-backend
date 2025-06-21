@@ -47,6 +47,10 @@ app.use('/api/v1/email', emailRouter)
 app.use('/api/v1/media', mediaRouter)
 app.use('/api/v1/stream', streamRouter)
 app.use('/api/v1/user', userRouter)
+// controllers/chatController.js
+
+
+
 
 
 
