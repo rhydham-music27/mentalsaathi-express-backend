@@ -1,3 +1,4 @@
+// import moduleName from 'a/';
 import cors from 'cors'
 import express from 'express';
 import dotenv from 'dotenv';
@@ -11,14 +12,11 @@ import toolsRouter from './routes/tools.route.js';
 import adminRouter from './routes/admin.route.js';
 import therapyRouter from './routes/therapist.route.js';
 import emailRouter from './routes/email.route.js';
-import profileStorage from './storage/profile.storage.js';
 import mediaRouter from './routes/media.routes.js';
-import therapistModels from './models/admin/therapist.models.js';
-import serverClient from './config/ServerClient.js';
 import streamRouter from './routes/stream.route.js';
-import { Authenticator } from './middleware/auth.middleware.js';
-import userModel from './models/auth/user.model.js';
 import userRouter from './routes/user.routes.js';
+import axios from 'axios';
+import hfRouter from './routes/hf.route.js';
 // import ava from './models/therapist/available.therapist.model.js';
 dotenv.config()
 
@@ -47,6 +45,7 @@ app.use('/api/v1/email', emailRouter)
 app.use('/api/v1/media', mediaRouter)
 app.use('/api/v1/stream', streamRouter)
 app.use('/api/v1/user', userRouter)
+app.use('/api/v1/huggingface',hfRouter )
 // controllers/chatController.js
 
 
