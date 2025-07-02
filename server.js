@@ -15,6 +15,7 @@ import hfRouter from './routes/hf.route.js';
 import { app, server } from './config/server.js';
 import { baseController } from './controller/base.controller.js';
 import io from './config/socket.js';
+import { registerIoController } from './controller/socket.controller.js';
 
 dotenv.config()
 connectDb()
@@ -32,10 +33,8 @@ app.use('/api/v1/media', mediaRouter)
 app.use('/api/v1/stream', streamRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/huggingface', hfRouter)
+registerIoController(io)
 
-io.on('connection', (socket) => {
-    console.log(socket.id)
-})
 
 server.listen(port, () => {
     console.log(`server is running on ${port} `)
