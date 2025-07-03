@@ -1,7 +1,7 @@
 import messageModel from "../models/chat/message.model.js"
 
 export const addMessageController = async (request, response) => {
-    const { message, timestamp, sender_id, reciever_id } = request.body
+    const { message, timestamp,room_id, sender_id, reciever_id } = request.body
     if (!message) return response
         .status(400)
         .send({
@@ -26,8 +26,14 @@ export const addMessageController = async (request, response) => {
             success: false,
             message: "reciever_id is required"
         })
+    if (!room_id) return response
+        .status(400)
+        .send({
+            success: false,
+            message: "room_id is required"
+        })
     try {
-        const messageData = await new messageModel({ message, timestamp, sender_id, receiver_id: reciever_id }).save()
+        const messageData = await new messageModel({ message, timestamp, sender_id, receiver_id: reciever_id ,room_id}).save()
         return response.status(201).send({
             message: "sent succesfull"
         })
