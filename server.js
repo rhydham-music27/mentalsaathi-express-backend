@@ -16,6 +16,7 @@ import { app, server } from './config/server.js';
 import { baseController } from './controller/base.controller.js';
 import io from './config/socket.js';
 import { registerIoController } from './controller/socket.controller.js';
+import messageRouter from './routes/messages.route.js';
 dotenv.config()
 connectDb()
 const port = process.env.PORT
@@ -31,7 +32,9 @@ app.use('/api/v1/media', mediaRouter)
 app.use('/api/v1/stream', streamRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/huggingface', hfRouter)
+app.use('/api/v1/message', messageRouter)
 registerIoController(io)
+
 server.listen(port, () => {
     console.log(`server is running on ${port} `)
 })
