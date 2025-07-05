@@ -8,7 +8,6 @@ const messageSchema = new mongoose.Schema({
     timestamp: {
         type: String,
         required: true,
-
     },
     sender_id: {
         type: String,
