@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import redis from "../config/redis.js"
+// import redis from "../config/redis.js"
 import adminAuthModel from "../models/auth/admin.auth.model.js"
 import userModel from "../models/auth/user.model.js"
 import therapistModels from '../models/admin/therapist.models.js';
@@ -13,10 +13,7 @@ export const PingController = async (request, response) => {
 
         })
 }
-export const getActiveController = async (_req, res) => {
-    const keys = await redis.keys('active_user:*');
-    res.json({ activeUsers: keys.length });
-}
+
 export const getUserController = async (_request, response) => {
     const totalUser = (await userModel.find({})).length
     response
