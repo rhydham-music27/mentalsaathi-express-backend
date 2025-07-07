@@ -19,5 +19,23 @@ export const registerIoController = (io) => {
             socket.to(room).emit('message', { message: message, sentbyyou: false, timestamp: new Date() })
             console.log("message sent", message, room)
         })
+        socket.on("join_room", ({ roomId, userName }) => {
+            socket.join(roomId);
+            const systemMessage = {
+                type: "system",
+                message: `${userName} joined the chat`,
+                timestamp: new Date(),
+            };
+            io.to(roomId).emit("system_message", systemMessage);
+        });
+
+        socket.on("leave_room", ({ roomId, userName }) => {
+            const systemMessage = {
+                type: "system",
+                message: `${userName} left the chat`,
+                timestamp: new Date(),
+            };
+            io.to(roomId).emit("system_message", systemMessage);
+        });
     })
 }
