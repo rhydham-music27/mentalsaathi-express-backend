@@ -6,7 +6,7 @@ const adminRouter = express.Router()
 
 
 adminRouter.get('/ping', PingController)
-adminRouter.get('/active-count', AdminAuthenticator, getActiveController);
+// adminRouter.get('/active-count', AdminAuthenticator, getActiveController);
 adminRouter.get('/totalUser', AdminAuthenticator, getUserController)
 adminRouter.get('/get-important', AdminAuthenticator, getNecessaryController)
 adminRouter.post('/login', adminAuthLoginController)
