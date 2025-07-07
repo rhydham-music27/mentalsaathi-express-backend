@@ -1,6 +1,6 @@
 import express from 'express';
 import { AdminAuthenticator } from '../middleware/auth.middleware.js';
-import { addTherapistController, adminAuthLoginController, getActiveController, getNecessaryController, getUserController, PingController } from '../controller/admin.controller.js';
+import { addTherapistController, adminAuthLoginController, getNecessaryController, getUserController, PingController } from '../controller/admin.controller.js';
 
 const adminRouter = express.Router()
 
