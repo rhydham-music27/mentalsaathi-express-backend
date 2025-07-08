@@ -26,14 +26,12 @@ export const getUserController = async (_request, response) => {
 }
 export const getNecessaryController = async (_request, response) => {
     const totalUser = (await userModel.find({})).length
-    const keys = await redis.keys('active_user:*');
     response
         .status(200)
         .send({
             message: "total user get succesfull",
             success: true,
             totalUser,
-            active: keys.length
         })
 }
 export const adminAuthLoginController = async (request, response) => {
