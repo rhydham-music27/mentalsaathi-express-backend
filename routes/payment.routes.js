@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { Router } from "express"
 import paymentModel from "../models/payment/payment.model.js"
 
@@ -11,4 +12,9 @@ paymentRouter.post('/post', async (request, response) => {
     })
 }
 )
+
+
+// Verification route
+paymentRouter.post("/verify",);
+
 export default paymentRouter
