@@ -18,6 +18,8 @@ import io from './config/socket.js';
 import { registerIoController } from './controller/socket.controller.js';
 import messageRouter from './routes/messages.route.js';
 import messageModel from './models/chat/message.model.js';
+import paymentModel from './models/payment/payment.model.js';
+import paymentRouter from './routes/payment.routes.js';
 dotenv.config()
 connectDb()
 const port = process.env.PORT
@@ -34,6 +36,8 @@ app.use('/api/v1/stream', streamRouter)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/huggingface', hfRouter)
 app.use('/api/v1/message', messageRouter)
+app.use('/api/v1/payment', paymentRouter)
+
 
 registerIoController(io)
 

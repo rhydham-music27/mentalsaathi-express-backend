@@ -1,11 +1,14 @@
 import { Router } from "express"
-import { createPaymentController, getPaymentController, verifyPaymentController } from "../controller/payment.controller.js"
-import { AdminAuthenticator } from "../middleware/auth.middleware.js"
+import paymentModel from "../models/payment/payment.model.js"
 
 const paymentRouter = Router()
-
-
-paymentRouter.post('/create-payments/:id',createPaymentController )
-paymentRouter.get('/get', AdminAuthenticator,getPaymentController)
-paymentRouter.patch('/verify/:id', verifyPaymentController)
+paymentRouter.post('/post', async (request, response) => {
+    const { upi_id } = request.body
+    const model = await new paymentModel({ upi_id: upi_id }).save()
+    response.status(201).send({
+        success: true,
+        message: "post succesfull"
+    })
+}
+)
 export default paymentRouter
